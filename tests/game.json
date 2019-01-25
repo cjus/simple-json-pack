@@ -1,0 +1,988 @@
+{
+  "version": "1.0.0",
+  "assets": [
+    "sprites.json",
+    "sounds.json",
+    "digital40pt.fnt",
+    "digitaltech90pt.fnt",
+    "terminal20pt.fnt"
+  ],
+  "refs": {
+    "sounds": {
+      "type": "sounds",
+      "atlas": "sounds.json",
+      "volume": 0
+    },
+    "title-image": {
+      "type": "image",
+      "name": "tyros-title.png",
+      "atlas": "sprites.json",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "hud": {
+      "type": "character",
+      "name": "hud",
+      "atlas": "sprites.json",
+      "sequence": "hud",
+      "frame": 0,
+      "x": 180,
+      "y": 180,
+      "z": 20000,
+      "vx": 0,
+      "vy": 0,
+      "dx": 0,
+      "dy": 0,
+      "loop": false,
+      "rotation": 0,
+      "collisionDetection": false,
+      "health": 0,
+      "strength": 0
+    },
+    "hud-title": {
+      "type": "text",
+      "name": "title",
+      "fontInfo": {
+        "font": "30px digitaltech90pt",
+        "align": "center"
+      },
+      "text": "Tyros",
+      "x": 138,
+      "y": 8,
+      "z": 25000
+    },
+    "hud-score": {
+      "type": "text",
+      "name": "score",
+      "fontInfo": {
+        "font": "30px digital40pt",
+        "align": "center"
+      },
+      "text": "00000",
+      "x": 140,
+      "y": 324,
+      "z": 25000
+    },
+    "hud-health": {
+      "type": "character",
+      "name": "health",
+      "atlas": "sprites.json",
+      "sequence": "health",
+      "animationSpeed": 0.1,
+      "frame": 0,
+      "x": 180,
+      "y": 322,
+      "z": 25000,
+      "loop": false,
+      "rotation": 0,
+      "collisionDetection": false,
+      "health": 0,
+      "strength": 0
+    },
+    "hud-fps": {
+      "type": "text",
+      "name": "fps",
+      "fontInfo": {
+        "font": "20px terminal20pt",
+        "align": "left"
+      },
+      "text": "00",
+      "x": 120,
+      "y": 45,
+      "z": 30000
+    },
+    "hud-env": {
+      "type": "text",
+      "name": "environment",
+      "fontInfo": {
+        "font": "16px terminal20pt",
+        "align": "left"
+      },
+      "text": "",
+      "x": 120,
+      "y": 70,
+      "z": 30000
+    },
+    "terminal": {
+      "type": "text",
+      "name": "terminal",
+      "fontInfo": {
+        "font": "20px terminal20pt",
+        "align": "left"
+      },
+      "text": "",
+      "x": 64,
+      "y": 50,
+      "z": 10
+    },
+    "terminal-button": {
+      "type": "character",
+      "name": "button",
+      "atlas": "sprites.json",
+      "sequence": "{name}",
+      "animationSpeed": 0.02,
+      "x": 0,
+      "y": 0,
+      "z": 30000,
+      "vx": 0,
+      "vy": 0,
+      "dx": 0,
+      "dy": 0,
+      "loop": true,
+      "tint": "aaaaaa",
+      "collisionDetection": false
+    },
+    "hero-tank": {
+      "type": "character",
+      "name": "hero",
+      "attribs": ["hero"],
+      "atlas": "sprites.json",
+      "sequence": "tank",
+      "frame": 0,
+      "x": 180,
+      "y": 274,
+      "z": 5001,
+      "vx": 0,
+      "vy": 0,
+      "dx": 0,
+      "dy": 0,
+      "loop": false,
+      "rotation": 0,
+      "collisionDetection": true,
+      "health": 100,
+      "strength": 10
+    },
+    "hero-cyclone": {
+      "type": "character",
+      "name": "hero",
+      "attribs": ["hero"],
+      "atlas": "sprites.json",
+      "sequence": "cyclone",
+      "frame": 0,
+      "x": 180,
+      "y": 274,
+      "z": 5001,
+      "vx": 0,
+      "vy": 0,
+      "dx": 0,
+      "dy": 0,
+      "loop": false,
+      "rotation": 0,
+      "collisionDetection": true,
+      "health": 100,
+      "strength": 10
+    },
+    "background-tile": {
+      "type": "image",
+      "name": "tile01.jpg",
+      "atlas": "sprites.json",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "crystal": {
+      "type": "character",
+      "name": "crystal",
+      "attribs": ["ground", "crystal"],
+      "atlas": "sprites.json",
+      "sequence": "crystal-a",
+      "x": 180,
+      "y": 180,
+      "z": 1000,
+      "loop": true,
+      "rotation": 0,
+      "animationSpeed": 0.03,
+      "collisionDetection": true,
+      "health": 0,
+      "strength": 0
+    },
+    "ground-patch": {
+      "type": "ground",
+      "attribs": ["ground", "patch"],
+      "name": "patch0",
+      "atlas": "sprites.json",
+      "sequence": "groundpatch",
+      "frame": 2,
+      "x": 80,
+      "y": 80,
+      "z": 1000,
+      "loop": false,
+      "collisionDetection": false,
+      "rotation": 0
+    },
+    "beetle": {
+      "type": "character",
+      "name": "beetle0",
+      "attribs": ["enemy", "beetle"],
+      "atlas": "sprites.json",
+      "sequence": "beetle",
+      "animationSpeed": 0.3,
+      "x": 180,
+      "y": 0,
+      "z": 5002,
+      "vx": 0,
+      "vy": 0.5,
+      "dx": 0,
+      "dy": 1,
+      "loop": true,
+      "rotation": 3.14,
+      "collisionDetection": true,
+      "health": 100,
+      "strength": 20
+    },
+    "squid": {
+      "type": "character",
+      "name": "squid0",
+      "attribs": ["enemy", "squid"],
+      "atlas": "sprites.json",
+      "sequence": "squid",
+      "animationSpeed": 0.3,
+      "x": 100,
+      "y": -1000,
+      "z": 5000,
+      "vx": 0,
+      "vy": 0.75,
+      "dx": 0,
+      "dy": 1,
+      "loop": true,
+      "rotation": 0,
+      "collisionDetection": true,
+      "health": 100,
+      "strength": 10
+    },
+    "seeker": {
+      "type": "character",
+      "name": "seeker0",
+      "attribs": ["enemy", "seeker"],
+      "atlas": "sprites.json",
+      "sequence": "seeker",
+      "animationSpeed": 0.3,
+      "x": 80,
+      "y": -1200,
+      "z": 5000,
+      "vx": 0,
+      "vy": 1,
+      "dx": 0,
+      "dy": 1,
+      "sx": 1,
+      "sy": 1,
+      "loop": true,
+      "rotation": 0,
+      "collisionDetection": true,
+      "health": 100,
+      "strength": 40
+    }
+  },
+  "texts": {
+    "level1": [
+      "Commander we're\nglad you're here.\n\nWe're under heavy\nenemy attack.\n\nWe'll see you on\nthe battle field.\n\nGood luck!"
+    ],
+    "level2": [
+      "Good job commander!\n\nWe're getting reports\nof enemy deployments\nup north.\n\nLet's move out!"
+    ],
+    "level3": [
+      "Commander, enemy\nseekers detected\nin sector 34.\n\nWe're going to\nneed you to pilot\nan air strike.\n\nSee you there!"
+    ]
+  },
+  "scenes": {
+    "title": {
+      "objects": [
+        {
+          "extends": "sounds"
+        },
+        {
+          "extends": "hud-title",
+          "text": "TYROS",
+          "fontInfo": {
+            "font": "90px digitaltech90pt",
+            "align": "center"
+          },
+          "x": 52,
+          "y": 35
+        },
+        {
+          "extends": "hud-score",
+          "name": "high-score",
+          "fontInfo": {
+            "font": "34px digitaltech90pt",
+            "align": "center"
+          },
+          "text": "HS\n00000",
+          "x": 15,
+          "y": 153
+        },
+        {
+          "type": "text",
+          "name": "volume",
+          "fontInfo": {
+            "font": "34px digitaltech90pt",
+            "align": "center"
+          },
+          "text": "VOL\n00",
+          "x": 285,
+          "y": 153,
+          "z": 25000
+        },
+        {
+          "extends": "title-image"
+        },
+        {
+          "type": "text",
+          "name": "instructions",
+          "fontInfo": {
+            "font": "34px digitaltech90pt",
+            "align": "center"
+          },
+          "text": "TURN BEZEL NOW\nTO SET VOLUME",
+          "x": 55,
+          "y": 230,
+          "z": 25000
+        },
+        {
+          "type": "text",
+          "name": "tap-to-start",
+          "fontInfo": {
+            "font": "28px digitaltech90pt",
+            "align": "center"
+          },
+          "text": "TAP TO START",
+          "x": 94,
+          "y": 310,
+          "z": 25000
+        }
+      ]
+    },
+    "terminal-level1": {
+      "objects": [
+        {
+          "extends": "sounds"
+        },
+        {
+          "extends": "hud",
+          "frame": 1
+        },
+        {
+          "extends": "hud-title"
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-prev",
+          "sequence": "terminal-button-prev",
+          "x": 147,
+          "y": 335
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-next",
+          "sequence": "terminal-button-next",
+          "x": 213,
+          "y": 335
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-close",
+          "sequence": "terminal-button-close",
+          "x": 213,
+          "y": 335
+        },
+        {
+          "type": "image",
+          "name": "terminal-commander.png",
+          "atlas": "sprites.json",
+          "x": 0,
+          "y": 44,
+          "z": 0
+        },
+        {
+          "extends": "terminal",
+          "name": "terminal",
+          "text": "",
+          "x": 80,
+          "y": 50
+        }
+      ]
+    },
+    "terminal-level2": {
+      "objects": [
+        {
+          "extends": "sounds"
+        },
+        {
+          "extends": "hud",
+          "frame": 1
+        },
+        {
+          "extends": "hud-title"
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-prev",
+          "sequence": "terminal-button-prev",
+          "x": 147,
+          "y": 335
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-next",
+          "sequence": "terminal-button-next",
+          "x": 213,
+          "y": 335
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-close",
+          "sequence": "terminal-button-close",
+          "x": 213,
+          "y": 335
+        },
+        {
+          "type": "image",
+          "name": "terminal-beetle.png",
+          "atlas": "sprites.json",
+          "x": 0,
+          "y": 44,
+          "z": 0
+        },
+        {
+          "extends": "terminal",
+          "name": "terminal",
+          "text": "",
+          "x": 55,
+          "y": 70
+        }
+      ]
+    },
+    "terminal-level3": {
+      "objects": [
+        {
+          "extends": "sounds"
+        },
+        {
+          "extends": "hud",
+          "frame": 1
+        },
+        {
+          "extends": "hud-title"
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-prev",
+          "sequence": "terminal-button-prev",
+          "x": 147,
+          "y": 335
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-next",
+          "sequence": "terminal-button-next",
+          "x": 213,
+          "y": 335
+        },
+        {
+          "extends": "terminal-button",
+          "name": "terminal-close",
+          "sequence": "terminal-button-close",
+          "x": 213,
+          "y": 335
+        },
+        {
+          "type": "image",
+          "name": "terminal-squid.png",
+          "atlas": "sprites.json",
+          "x": 0,
+          "y": 44,
+          "z": 0
+        },
+        {
+          "extends": "terminal",
+          "name": "terminal",
+          "text": "",
+          "x": 55,
+          "y": 70
+        }
+      ]
+    },
+    "gameover": {
+      "objects": [
+        {
+          "type": "text",
+          "name": "gameover",
+          "fontInfo": {
+            "font": "60px digitaltech90pt",
+            "align": "center"
+          },
+          "text": "GAME\nOVER",
+          "x": 108,
+          "y": 100,
+          "z": 25000
+        },
+        {
+          "extends": "hud",
+          "frame": 2
+        }
+      ]
+    },
+    "level1": {
+      "objects": [
+        {
+          "type": "xxxactions",
+          "actions": {"90":"left","108":"left","126":"left","178":"right","214":"right","228":"right","287":"right","306":"right","325":"right","371":"right","413":"right","452":"left","468":"left","470":"left","472":"left","474":"left","476":"left","478":"left","480":"left","495":"left","523":"left","567":"right","582":"right","584":"right","586":"right","588":"right","624":"left","640":"left","684":"left","733":"right","748":"right","750":"right","765":"right","784":"right","801":"right","812":"right","845":"left","870":"right","957":"left","972":"left","974":"left","976":"left","979":"left","981":"left","983":"left","985":"left","987":"left","989":"left","1008":"right","1023":"right"}
+        },
+        {
+          "extends": "sounds"
+        },
+        {
+          "extends": "background-tile",
+          "name": "tile02.jpg",
+          "flip": false
+        },
+        {
+          "extends": "hud"
+        },
+        {
+          "extends": "hud-title"
+        },
+        {
+          "extends": "hud-score"
+        },
+        {
+          "extends": "hud-health"
+        },
+        {
+          "extends": "hud-fps"
+        },
+        {
+          "extends": "hud-env"
+        },
+        {
+          "extends": "crystal",
+          "name": "crystal1",
+          "comment": "crystal behind scrubs on top of screen",
+          "sequence": "crystal-d",
+          "x": 150,
+          "y": 58,
+          "z": 900,
+          "sx": 0.5,
+          "sy": 0.5
+        },
+        {
+          "extends": "crystal",
+          "name": "crystal2",
+          "comment": "crystal behind two rocks on upper left of screen",
+          "sequence": "crystal-a",
+          "x": 80,
+          "y": 145,
+          "z": 800
+        },
+        {
+          "extends": "crystal",
+          "name": "crystal3",
+          "comment": "crystal behind two rocks on right of screen",
+          "sequence": "crystal-b",
+          "x": 322,
+          "y": 194,
+          "z": 800
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch0",
+          "comment": "upper scrubs covering left side of crystal",
+          "frame": 0,
+          "x": 120,
+          "y": 60,
+          "z": 1002
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch1",
+          "comment": "upper scrubs covering top side of crystal",
+          "frame": 0,
+          "x": 152,
+          "y": 50,
+          "z": 1003
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch2",
+          "comment": "upper center srubs covering top crystal",
+          "frame": 0,
+          "x": 180,
+          "y": 60,
+          "z": 1004
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch3",
+          "comment": "upper center srubs covering bottom of top crystal",
+          "frame": 0,
+          "x": 152,
+          "y": 83,
+          "z": 1005
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch4",
+          "frame": 7,
+          "comment": "upper right rock",
+          "x": 278,
+          "y": 50,
+          "z": 1006,
+          "collisionDetection": true
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch5",
+          "comment": "center big rock",
+          "frame": 4,
+          "x": 153,
+          "y": 182
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch6",
+          "comment": "very large rock debris on lower left of scene",
+          "frame": 13,
+          "x": 90,
+          "y": 262
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch7",
+          "comment": "large rock on top of right most crystal",
+          "frame": 4,
+          "x": 302,
+          "y": 162,
+          "z": 1002,
+          "collisionDetection": true
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch8",
+          "comment": "small three srub cluster on lower right of scene",
+          "frame": 12,
+          "x": 272,
+          "y": 288,
+          "collisionDetection": false
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch9",
+          "comment": "rock on top of srubs on upper left and on top of upper left crystal",
+          "frame": 3,
+          "x": 75,
+          "y": 130,
+          "z": 1004
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch10",
+          "comment": "rock on top of srubs on upper left and on top/bottom of upper left crystal",
+          "frame": 3,
+          "x": 90,
+          "y": 162,
+          "z": 1001
+        },
+        {
+          "extends": "hero-tank"
+        },
+        {
+          "extends": "beetle",
+          "name": "beetle",
+          "x": 0,
+          "y": 0,
+          "count": 12
+        }
+      ]
+    },
+    "level2": {
+      "objects": [
+        {
+          "type": "xxxactions",
+          "actions": {"90":"left","108":"left","126":"left","178":"right","214":"right","228":"right","287":"right","306":"right","325":"right","371":"right","413":"right","452":"left","468":"left","470":"left","472":"left","474":"left","476":"left","478":"left","480":"left","495":"left","523":"left","567":"right","582":"right","584":"right","586":"right","588":"right","624":"left","640":"left","684":"left","733":"right","748":"right","750":"right","765":"right","784":"right","801":"right","812":"right","845":"left","870":"right","957":"left","972":"left","974":"left","976":"left","979":"left","981":"left","983":"left","985":"left","987":"left","989":"left","1008":"right","1023":"right"}
+        },
+        {
+          "extends": "sounds"
+        },
+        {
+          "extends": "background-tile",
+          "name": "tile03.jpg",
+          "flip": true
+        },
+        {
+          "extends": "hud"
+        },
+        {
+          "extends": "hud-title"
+        },
+        {
+          "extends": "hud-score"
+        },
+        {
+          "extends": "hud-health"
+        },
+        {
+          "extends": "hud-fps"
+        },
+        {
+          "extends": "hud-env"
+        },
+        {
+          "type": "image",
+          "name": "tank18.png",
+          "atlas": "sprites.json",
+          "comment": "destroyed tank",
+          "x": 126,
+          "y": 76,
+          "z": 900,
+          "rotation": 1.25,
+          "collisionDetection": true
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch1",
+          "comment": "debris covering destroyed tank",
+          "frame": 13,
+          "x": 91,
+          "y": 130,
+          "z": 1000,
+          "rotation": 1.25,
+          "collisionDetection": false
+        },
+        {
+          "type": "image",
+          "name": "cyclone4.png",
+          "atlas": "sprites.json",
+          "comment": "destroyed cyclone",
+          "x": 210,
+          "y": 140,
+          "z": 900,
+          "rotation": -0.25,
+          "collisionDetection": true
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch2",
+          "comment": "debris covering destroyed tank",
+          "frame": 13,
+          "x": 280,
+          "y": 170,
+          "z": 1000,
+          "rotation": 2.0,
+          "collisionDetection": false
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch3",
+          "comment": "rock on lower left",
+          "frame": 4,
+          "x": 40,
+          "y": 240,
+          "z": 1000,
+          "collisionDetection": true
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch4",
+          "comment": "shubs on top of rock on lower left",
+          "frame": 0,
+          "x": 60,
+          "y": 280,
+          "z": 1002,
+          "collisionDetection": false
+        },
+        {
+          "extends": "hero-tank"
+        },
+        {
+          "extends": "beetle",
+          "name": "beetle",
+          "x": 0,
+          "y": 0,
+          "comment": "increase vy for slightly faster beetles",
+          "vy": 0.8,
+          "count": 16
+        }
+      ]
+    },
+    "level3": {
+      "objects": [
+        {
+          "type": "xxxactions",
+          "actions": {"90":"left","108":"left","126":"left","178":"right","214":"right","228":"right","287":"right","306":"right","325":"right","371":"right","413":"right","452":"left","468":"left","470":"left","472":"left","474":"left","476":"left","478":"left","480":"left","495":"left","523":"left","567":"right","582":"right","584":"right","586":"right","588":"right","624":"left","640":"left","684":"left","733":"right","748":"right","750":"right","765":"right","784":"right","801":"right","812":"right","845":"left","870":"right","957":"left","972":"left","974":"left","976":"left","979":"left","981":"left","983":"left","985":"left","987":"left","989":"left","1008":"right","1023":"right"}
+        },
+        {
+          "extends": "sounds"
+        },
+        {
+          "extends": "background-tile",
+          "name": "tile03.jpg",
+          "flip": true
+        },
+        {
+          "extends": "hud"
+        },
+        {
+          "extends": "hud-title"
+        },
+        {
+          "extends": "hud-score"
+        },
+        {
+          "extends": "hud-health"
+        },
+        {
+          "extends": "hud-fps"
+        },
+        {
+          "extends": "hud-env"
+        },
+        {
+          "type": "image",
+          "name": "tank18.png",
+          "atlas": "sprites.json",
+          "comment": "destroyed tank",
+          "x": 126,
+          "y": 76,
+          "z": 900,
+          "rotation": 1.25,
+          "collisionDetection": true
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch1",
+          "comment": "debris covering destroyed tank",
+          "frame": 13,
+          "x": 91,
+          "y": 130,
+          "z": 1000,
+          "rotation": 1.25,
+          "collisionDetection": false
+        },
+        {
+          "type": "image",
+          "name": "cyclone4.png",
+          "atlas": "sprites.json",
+          "comment": "destroyed cyclone",
+          "x": 210,
+          "y": 140,
+          "z": 900,
+          "rotation": -0.25,
+          "collisionDetection": true
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch2",
+          "comment": "debris covering destroyed tank",
+          "frame": 13,
+          "x": 280,
+          "y": 170,
+          "z": 1000,
+          "rotation": 2.0,
+          "collisionDetection": false
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch3",
+          "comment": "rock on lower left",
+          "frame": 4,
+          "x": 40,
+          "y": 240,
+          "z": 1000,
+          "collisionDetection": true
+        },
+        {
+          "extends": "ground-patch",
+          "name": "patch4",
+          "comment": "shubs on top of rock on lower left",
+          "frame": 0,
+          "x": 60,
+          "y": 280,
+          "z": 1002,
+          "collisionDetection": false
+        },
+        {
+          "extends": "hero-cyclone"
+        },
+        {
+          "extends": "beetle",
+          "name": "beetle",
+          "x": 0,
+          "y": 0,
+          "comment": "increase vy for slightly faster beetles",
+          "vy": 0.8,
+          "count": 16
+        }
+      ]
+    },
+    "level4": {
+      "objects": [
+        {
+          "type": "data",
+          "sampleData": {
+            "crystalValues": {
+              "crystal1": 128,
+              "crystal2": 56
+            }
+          }
+        },
+        {
+          "extends": "sounds"
+        },
+        {
+          "extends": "hud"
+        },
+        {
+          "extends": "hud-title"
+        },
+        {
+          "extends": "hud-score"
+        },
+        {
+          "extends": "hud-health"
+        },
+        {
+          "extends": "hud-fps"
+        },
+        {
+          "extends": "hud-env"
+        },
+        {
+          "extends": "hero-tank"
+        },
+        {
+          "extends": "crystal",
+          "name": "crystal2",
+          "comment": "crystal behind two rocks on upper left of screen",
+          "sequence": "crystal-a",
+          "x": 80,
+          "y": 145,
+          "z": 10,
+          "dy": 1,
+          "vy": 0.2
+        },
+        {
+          "extends": "crystal",
+          "name": "crystal3",
+          "comment": "crystal behind two rocks on right of screen",
+          "sequence": "crystal-b",
+          "x": 280,
+          "y": -60,
+          "z": 800,
+          "dy": 1,
+          "vy": 0.2
+        },
+        {
+          "type": "image",
+          "name": "tile04.png",
+          "atlas": "sprites.json",
+          "comment": "scrollable background tile",
+          "count": 2,
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      ]
+    }
+  }
+}
