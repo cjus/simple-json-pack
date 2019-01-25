@@ -1,5 +1,5 @@
 /**
- * @name sjp - simple json pack
+ * @name SimpleJSONPack - simple json pack
  * @description JSON tool to parse JSON files, remove whitespaces and ensure packed output
  */
 class SimpleJSONPack {
@@ -90,7 +90,7 @@ class SimpleJSONPack {
     });
     let newObj = JSON.parse(data);
     newObj._dict = this._dict;
-    return JSON.stringify(newObj)
+    return JSON.stringify(newObj);
   }
 
   /**
