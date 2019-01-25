@@ -52,3 +52,12 @@ SJP - Simple JSON Pack, ver 1.0
 ./tests/github.json.out file size in bytes: 48165
 resulting compression: 33%
 ```
+
+#### Decompress (unpack)
+
+Use the -u option with the -i option to specify an input file and the -o option to specify a destination output file.
+
+```shell
+$ ./sjp.js -u -i ./tests/game.json.out -o ./tests/game2.json
+```
+
