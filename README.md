@@ -18,10 +18,17 @@ This approach offers the opportunty of removing the dictionary from the target J
 
 There's an included command line program called `sjp`.  If you'd like to use the code directly in your own projects then just use the `simple-json-pack.js`. The `sjp` serves as a working example.
 
+You can install `sjp` has a global command:
+
+```shell
+$ npm install -g simple-json-pack
+$ sjp --help
+```
+
 #### Help options
 
 ```
-$ ./sjp.js --help
+$ sjp --help
 SJP - Simple JSON Pack
 Usage: sjp [options]
 
@@ -42,7 +49,7 @@ Options:
 Use the -p option with the -i option to specify a file:
 
 ```shell
-$ ./sjp.js -p -i ./tests/game.json
+$ sjp -p -i ./tests/game.json
 SJP - Simple JSON Pack
 ./tests/game.json file size in bytes: 24110
 ./tests/game.json.out file size in bytes: 12379
@@ -50,7 +57,7 @@ resulting compression: 49%
 ```
 
 ```shell
-$ ./sjp.js -p -i ./tests/github.json
+$ sjp -p -i ./tests/github.json
 SJP - Simple JSON Pack
 ./tests/github.json file size in bytes: 71547
 ./tests/github.json.out file size in bytes: 48165
@@ -62,7 +69,7 @@ resulting compression: 33%
 Use the -u option with the -i option to specify an input file and the -o option to specify a destination output file.
 
 ```shell
-$ ./sjp.js -u -i ./tests/game.json.out -o ./tests/game2.json
+$ sjp -u -i ./tests/game.json.out -o ./tests/game2.json
 ```
 
 #### Excluding keys
@@ -70,7 +77,7 @@ $ ./sjp.js -u -i ./tests/game.json.out -o ./tests/game2.json
 You can exclude named JSON keys by specifying them in an exclusion list using the -e/--exclude
 
 ```shell
-$ ./sjp.js -p -e "comments","frame" -i ./tests/game.json
+$ sjp -p -e "comments","frame" -i ./tests/game.json
 ```
 
 > When using excludes make sure that you don't have spaces between entries

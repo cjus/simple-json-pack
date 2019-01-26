@@ -8,6 +8,7 @@ const fs = require('fs');
 const program = require('commander');
 const chalk = require('chalk');
 const SimpleJSONPack = require('./simple-json-pack');
+const version = require('./package.json').version;
 
 /**
  * @name conlog
@@ -60,7 +61,7 @@ function main() {
   log('info', 'SJP - Simple JSON Pack');
 
   program
-    .version('1.0.1')
+    .version(version)
     .option('-p, --pack', 'perform packing')
     .option('-u, --unpack', 'perform unpacking')
     .option('-i, --input <file>', 'input filename')
