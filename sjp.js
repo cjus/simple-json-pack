@@ -5,6 +5,7 @@
 * @description Simple JSON Pack CLI
 */
 const fs = require('fs');
+const path = require('path');
 const program = require('commander');
 const chalk = require('chalk');
 const SimpleJSONPack = require('./simple-json-pack');
@@ -81,10 +82,13 @@ function main() {
   }
   if (!program.input) {
     log('error', 'You must specify an input file name.');
+    program.input = path.resolve(program.input);
     process.exit(0);
   }
   if (!program.output) {
-    program.output = `${program.input}.out`;
+    program.output = path.resolve(`${program.input}.out`);
+  } else {
+    program.output = path.resolve(program.output);
   }
 
   let simpleJSONPack = new SimpleJSONPack();
