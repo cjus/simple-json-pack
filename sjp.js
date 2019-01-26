@@ -96,6 +96,7 @@ function main() {
     if (err) {
       throw err;
     }
+    const stats1 = fs.statSync(program.input);
     let processedJSON = '';
     if (program.pack) {
       processedJSON = simpleJSONPack.pack(data);
@@ -113,7 +114,6 @@ function main() {
         log('warning', `warning, the following keys are excluded: ${program.exclude.join(',')}`);
       }
       if (program.pack) {
-        const stats1 = fs.statSync(program.input);
         const stats2 = fs.statSync(program.output);
         let reduction = 100 - (stats2.size / stats1.size) * 100;
         if (program.debug) {

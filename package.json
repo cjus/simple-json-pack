@@ -1,0 +1,29 @@
+{
+  "name": "simple-json-pack",
+  "version": "1.0.5",
+  "description": "Simple JSON Pack",
+  "author": "Carlos Justiniano <carlos.justiniano@gmail.com>",
+  "keywords": [
+    "json",
+    "compression"
+  ],
+  "analyze": false,
+  "preferGlobal": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.2.1"
+  },
+  "repository": "cjus/simple-json-pack",
+  "dependencies": {
+    "chalk": "2.4.2",
+    "commander": "2.19.0"
+  },
+  "devDependencies": {
+    "eslint": "3.19.0",
+    "eslint-config-google": "0.7.1",
+    "eslint-plugin-mocha": "4.9.0"
+  },
+  "bin": {
+    "sjp": "sjp.js"
+  }
+}
