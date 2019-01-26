@@ -23,24 +23,21 @@ class SimpleJSONPack {
     this._excludes = list.slice();
   }
 
-  /** Function that count occurrences of a substring in a string;
+  /**
    * @name occurrences
-   * @param {String} string               The string
-   * @param {String} subString            The sub string to search for
-   * @param {Boolean} [allowOverlapping]  Optional. (Default:false)
-   * @author Vitim.us https://gist.github.com/victornpb/7736865
-   * @see Unit Test https://jsfiddle.net/Victornpb/5axuh96u/
+   * @description function that count occurrences of a substring in a string
+   * @param {string} string - The string
+   * @param {string} subString - The sub string to search for
+   * @param {boolean} [allowOverlapping] - Optional. (Default:false)
    * @see http://stackoverflow.com/questions/4009756/how-to-count-string-occurrence-in-string/7924240#7924240
    * @return {number} occurence count
    */
   occurrences(string, subString, allowOverlapping) {
     string += '';
     subString += '';
-
     if (subString.length <= 0) {
       return (string.length + 1);
     }
-
     let n = 0;
     let pos = 0;
     let step = allowOverlapping ? 1 : subString.length;
@@ -70,7 +67,7 @@ class SimpleJSONPack {
           delete obj[key];
           continue;
         }
-        if (!this._rdict[key]) {
+        if (this._rdict[key] === undefined) {
           this._rdict[key] = 0;
         } else {
           this._rdict[key]++;
@@ -78,10 +75,14 @@ class SimpleJSONPack {
         if (typeof obj[key] === 'string') {
           let count = this.occurrences(this._stringifiedJSON, obj[key]);
           if (count > 1) {
-            this._rdict[obj[key]] = count;
+            if (this._rdict[obj[key]] === undefined) {
+              this._rdict[obj[key]] = 0;
+            } else {
+              this._rdict[obj[key]]++;
+            }
           }
         }
-        if (obj[key] !== null && typeof (obj[key]) == 'object') {
+        if (obj[key] !== null && typeof (obj[key]) === 'object') {
           this.traverse(obj[key]);
         }
       }
@@ -97,22 +98,27 @@ class SimpleJSONPack {
   pack(stringifiedData) {
     let obj = JSON.parse(stringifiedData);
     this._stringifiedJSON = stringifiedData;
+
     this.traverse(obj);
+
+    Object.keys(this._rdict).forEach((key) => {
+      if (this._rdict[key] <= 0) {
+        delete this._rdict[key];
+      }
+    });
+
     let data = JSON.stringify(obj);
     let cnt = 0;
 
-    let sortedDict = Object.keys(this._rdict);
-    sortedDict.sort();
-    for (let key in sortedDict) {
-      if (sortedDict.hasOwnProperty(key)) {
-        let index = (++cnt).toString(16);
-        if (key.length > index.length + 1) {
-          this._rdict[key] = `_${index}`;
-          this._dict[`_${index}`] = key;
-          data = data.replace(new RegExp(`"${key}"`, 'g'), `"${this._rdict[key]}"`);
-        }
+    let sorted = Object.keys(this._rdict).sort((a, b) => this._rdict[b] - this._rdict[a]);
+    sorted.forEach((key) => {
+      let index = (++cnt).toString(16);
+      if (key.length > index.length + 1) {
+        this._rdict[key] = `_${index}`;
+        this._dict[`_${index}`] = key;
+        data = data.replace(new RegExp(`"${key}"`, 'g'), `"${this._rdict[key]}"`);
       }
-    }
+    });
     let newObj = JSON.parse(data);
     newObj._dict = this._dict;
     return JSON.stringify(newObj);
