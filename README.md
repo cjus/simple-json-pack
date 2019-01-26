@@ -22,15 +22,19 @@ There's an included command line program called `sjp`.  If you'd like to use the
 
 ```
 $ ./sjp.js --help
-SJP - Simple JSON Pack, ver 1.0
+SJP - Simple JSON Pack
 Usage: sjp [options]
 
 Options:
-  -p, --pack           perform packing
-  -u, --unpack         perform unpacking
-  -i, --input <file>   input filename
-  -o, --output <file>  output filename
-  -h, --help           output usage information
+  -v, --version          output the version number
+  -p, --pack             perform packing
+  -u, --unpack           perform unpacking
+  -i, --input <file>     input filename
+  -o, --output <file>    output filename
+  -e, --exclude <items>  exclusion list
+  -v, --version          display version
+  -d, --debug            output prettified JSON for easier debugging
+  -h, --help             output usage information
 ```
 
 #### Compress (pack)
@@ -39,7 +43,7 @@ Use the -p option with the -i option to specify a file:
 
 ```shell
 $ ./sjp.js -p -i ./tests/game.json
-SJP - Simple JSON Pack, ver 1.0
+SJP - Simple JSON Pack
 ./tests/game.json file size in bytes: 24110
 ./tests/game.json.out file size in bytes: 12379
 resulting compression: 49%
@@ -47,7 +51,7 @@ resulting compression: 49%
 
 ```shell
 $ ./sjp.js -p -i ./tests/github.json
-SJP - Simple JSON Pack, ver 1.0
+SJP - Simple JSON Pack
 ./tests/github.json file size in bytes: 71547
 ./tests/github.json.out file size in bytes: 48165
 resulting compression: 33%
@@ -60,4 +64,18 @@ Use the -u option with the -i option to specify an input file and the -o option 
 ```shell
 $ ./sjp.js -u -i ./tests/game.json.out -o ./tests/game2.json
 ```
+
+#### Excluding keys
+
+You can exclude named JSON keys by specifying them in an exclusion list using the -e/--exclude
+
+```shell
+$ ./sjp.js -p -e "comments","frame" -i ./tests/game.json
+```
+
+> When using excludes make sure that you don't have spaces between entries
+
+#### Debug
+
+You can generate output files which are JSON prettifed for debugging purposes by using the -d/--debug flag.
 

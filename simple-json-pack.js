@@ -9,7 +9,18 @@ class SimpleJSONPack {
   constructor() {
     this._rdict = {};
     this._dict = {};
+    this._excludes = [];
     this._stringifiedJSON = '';
+  }
+
+  /**
+   * @name setExcludes
+   * @description set key names to exclude
+   * @param {array} list - array of exclusion key names
+   * @return {undefined}
+   */
+  setExcludes(list) {
+    this._excludes = list.slice();
   }
 
   /** Function that count occurrences of a substring in a string;
@@ -54,11 +65,20 @@ class SimpleJSONPack {
   traverse(obj) {
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
-        this._rdict[key] = '';
+        let exclude = (this._excludes.indexOf(key) > -1) ? true : false;
+        if (exclude) {
+          delete obj[key];
+          continue;
+        }
+        if (!this._rdict[key]) {
+          this._rdict[key] = 0;
+        } else {
+          this._rdict[key]++;
+        }
         if (typeof obj[key] === 'string') {
           let count = this.occurrences(this._stringifiedJSON, obj[key]);
           if (count > 1) {
-            this._rdict[obj[key]] = '';
+            this._rdict[obj[key]] = count;
           }
         }
         if (obj[key] !== null && typeof (obj[key]) == 'object') {
@@ -80,14 +100,19 @@ class SimpleJSONPack {
     this.traverse(obj);
     let data = JSON.stringify(obj);
     let cnt = 0;
-    Object.keys(this._rdict).forEach((key) => {
-      let index = (++cnt).toString(16);
-      if (key.length > index.length + 1) {
-        this._rdict[key] = `_${index}`;
-        this._dict[`_${index}`] = key;
-        data = data.replace(new RegExp(`"${key}"`, 'g'), `"${this._rdict[key]}"`);
+
+    let sortedDict = Object.keys(this._rdict);
+    sortedDict.sort();
+    for (let key in sortedDict) {
+      if (sortedDict.hasOwnProperty(key)) {
+        let index = (++cnt).toString(16);
+        if (key.length > index.length + 1) {
+          this._rdict[key] = `_${index}`;
+          this._dict[`_${index}`] = key;
+          data = data.replace(new RegExp(`"${key}"`, 'g'), `"${this._rdict[key]}"`);
+        }
       }
-    });
+    }
     let newObj = JSON.parse(data);
     newObj._dict = this._dict;
     return JSON.stringify(newObj);

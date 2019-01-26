@@ -1,5 +1,6 @@
 {
   "version": "1.0.0",
+  "comment": "test",
   "assets": [
     "sprites.json",
     "sounds.json",
@@ -8,6 +9,7 @@
     "terminal20pt.fnt"
   ],
   "refs": {
+    "comment": "test2",
     "sounds": {
       "type": "sounds",
       "atlas": "sounds.json",
