@@ -109,7 +109,7 @@ function main() {
       if (err) {
         throw err;
       }
-      if (program.exclude.length > 0) {
+      if (program.exclude && program.exclude.length > 0) {
         log('warning', `warning, the following keys are excluded: ${program.exclude.join(',')}`);
       }
       if (program.pack) {
